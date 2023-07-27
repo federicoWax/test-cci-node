@@ -1,0 +1,36 @@
+{
+  "name": "test-cci-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "ts:node": "ts-node src",
+    "dev": "nodemon -x node --es-module-specifier-resolution=node --no-warnings --loader ts-node/esm src/index.ts",
+    "build": "tsc",
+    "html": "find ./src -name '*.hbs' -o -name '*.css' -type f -exec cp --parents {} ./build \\;",
+    "clean": "rm -rf build",
+    "cleanModule": "rm -rf node_modules",
+    "start": "node --es-module-specifier-resolution=node build/src"
+  },
+  "author": "Federico",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.8.1",
+    "@prisma/client": "^5.0.0",
+    "@types/cors": "^2.8.13",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "graphql": "^16.7.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.4.5",
+    "nodemon": "^3.0.1",
+    "prisma": "^5.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}
