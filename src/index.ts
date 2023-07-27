@@ -7,14 +7,11 @@ import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import typeDefs from './graphql/typeDefs';
 import resolvers from './graphql/resolvers';
-import routes from './routes';
 
 const app = express();
 const httpServer = http.createServer(app);
 
 try {
-  await routes(app);
-
   const server = new ApolloServer({
     typeDefs,
     resolvers,
