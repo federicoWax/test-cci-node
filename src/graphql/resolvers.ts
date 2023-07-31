@@ -1,22 +1,25 @@
-import { PrismaClient } from '@prisma/client';
 import { PurchaseOrder } from "../interfaces";
-
-const prisma = new PrismaClient();
+import { findManyPurchaseOrder } from "../repositories/purchaseOrder";
+import { createPurchaseOrder } from "../services/purchaseOrder";
 
 const resolvers = {
   Query: {
-    purchaseOrders: () => {
-      return prisma.purchaseOrder.findMany({
-        include: {
-          products: true,
-        },
-      });
+    getPurchaseOrders: async () => {
+      try {
+        return await findManyPurchaseOrder();
+      } catch (error) {
+        console.log(error);
+        throw new Error('Error al obtener las órdenes de compra.');
+      }
     },
   },
   Mutation: {
-    createPurchaseOrderWithProducts: async (_: any, { data }: { data: PurchaseOrder }) => {
-
-
+    createPurchaseOrder: async (_: any, { data }: { data: PurchaseOrder }) => {
+      try {
+        return await createPurchaseOrder(data);
+      } catch (error) {
+        throw error;
+      }
     },
   },
 };

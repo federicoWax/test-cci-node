@@ -24,25 +24,20 @@ const typeDefs = `#graphql
     product: String
     quantity: Int
     price: Float
-    total: Float
   }
 
   input PurchaseOrderInput {
-    date: String
     client: String
     address: String
-    subtotal: Float
-    tax: Float
-    total: Float
     products: [OrderProductInput]
   }
 
   type Query {
-    purchaseOrders: [PurchaseOrder]
+    getPurchaseOrders: [PurchaseOrder]
   }
 
   type Mutation {
-    createPurchaseOrderWithProducts(data: PurchaseOrderInput!): PurchaseOrder
+    createPurchaseOrder(data: PurchaseOrderInput!): PurchaseOrder
   }
 `;
 
